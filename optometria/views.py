@@ -14,7 +14,15 @@ def index(request):
 	return render(request, "index.html")
 
 def lista_pedidos(request):
-	return render(request, 'pedidos/lista_pedidos.html')
+	pedidos = Pedidos.objects.all()
+	return render(request, 'pedidos/lista_pedidos.html', {'pedidos': pedidos})
+
+def nuevo_pedido(request):
+	if request.method == "POST":
+		pass
+	
+	pedidos = Pedidos.objects.all()
+	return render(request, 'pedido/lista_pedidos.html', {'pedidos': pedidos})
 
 def lista_turno(request):
 	if not request.user.has_related_object('secretaria') or request.user.has_related_object('gerente'):

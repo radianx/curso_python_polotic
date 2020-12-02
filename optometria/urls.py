@@ -16,5 +16,6 @@ urlpatterns = [
 	path('logout', views.logout_view, name='logout'),
 
 	#pedidos
-	path('lista_pedidos', views.lista_pedidos, name='lista_pedidos')
+	path('lista_pedidos', views.lista_pedidos, name='lista_pedidos'),
+	path('nuevo_pedido', views.nuevo_pedido, name='nuevo_pedido')
 ]

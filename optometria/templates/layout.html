@@ -62,19 +62,6 @@
                               Ver
                             </a>
                             {% endif %}
-                            <div class="sb-sidenav-menu-heading">Pacientes</div>
-                            {% if request.user.secretaria or request.user.gerente %}
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
-                                Nuevo
-                            </a>
-                            {% endif %}
-                            {% if request.user.personalMedico or request.user.gerente %}
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Ver
-                            </a>
-                            {% endif %}
                             {% if request.user.gerente %}
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                               <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
