@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Paciente</th>
+                <th>Secretaria</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Fecha</th>
+                <th>Paciente</th>
+                <th>Secretaria</th>
+                <th>Acciones</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for turno in turnos %}
+            <tr>         
+                <td>{{ turno.fechaDeTurno }}</td>
+                <td>{{ turno.paciente }}</td>
+                <td>{{ turno.secretaria }}</td>
+                <td> <ul class="list-inline m-0">
+                    <li class="list-inline-item">
+                        <a class="btn btn-success btn-sm rounded-0" href={% url 'modificar_turno' id=turno.id %} id="edit_turno_{{ turno.id }}" title="Modificar"><i class="fa fa-edit"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-danger btn-sm rounded-0" href={% url 'eliminar_turno' id=turno.id %}  id="delete_turno_{{ turno.id }}" title="Eliminar"><i class="fa fa-trash"></i></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "usuarios/login_layout.html" %}
+
+{% block content %}
+    <form class="was-validated" action="{% url 'register' %}" method='post'>
+        {% csrf_token %}
+        <h2>Datos de Inicio de Sesión</h2>
+        {% if mensaje %}
+        <div class="alert alert-info" style="display: none" id="messages">
+            {{ mensaje }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="row">
+                <label for="email">Email*</label>
+                <input type="email" class="form-control" id="email" name="email" required/>
+                <div class="valid-feedback">Válido.</div>
+                <div class="invalid-feedback">Debe completar este campo.</div>
+            </div>
+            <div class="row">
+                <label for="contrasena">Contraseña*</label>
+                <input type="password" class="form-control" id="contrasena" name="contrasena" required/>
+                <div class="valid-feedback">Válido.</div>
+                <div class="invalid-feedback">Debe llenar este campo y debe coincidir con el siguiente.</div>
+            </div>
+            <div class="row">
+                <label for="repeat_pass">Repetir Contraseña*</label>
+                <input type="password" class="form-control" id="repeat_pass" name="repeat_pass" required/>
+                <div class="valid-feedback">Válido.</div>
+                <div class="invalid-feedback">Debe llenar este campo y debe coincidir con el anterior.</div>
+            </div>
+        </div>
+        <h2>Datos Personales</h2>
+        <div class="form-group">
+            <div class="row">
+                <label for="nombre">Nombre*</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" size="60" maxlength="60" required/>
+                <div class="valid-feedback">Válido.</div>
+                <div class="invalid-feedback">Debe llenar este campo.</div>
+            </div>
+            <div class="row">
+                <label for="apellido">Apellido*</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" size="60" maxlength="60" required/>
+                <div class="valid-feedback">Válido.</div>
+                <div class="invalid-feedback">Debe llenar este campo.</div>
+            </div>
+            <div class="row">
+                <label for="telefono">Número de Teléfono</label>
+                <input type="tel" id="telefono" name="telefono"/>
+            </div>
+            <div class="row">
+                <label for="fecha_nac">Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nac" name="fecha_nac"/>
+            </div>
+        </div>
+        <div class="form-group form-check">
+            <legend>Rol</legend>
+            <label class="form-check-label" for="secretaria">
+                <input type="radio" class="radio" name="rol" value="Secretaria" id="secretaria"/>
+                Secretaria
+            </label>
+            <label class="form-check-label" for="prof_medico">
+                <input type="radio" class="radio" name="rol" value="Profesional_medico" id="prof_medico"/>
+                Profesional Médico
+            </label>
+            <label class="form-check-label" for="ventas">
+                <input type="radio" class="radio" name="rol" value="Ventas" id="ventas"/>
+                Ventas
+            </label>
+            <label class="form-check-label" for="taller">
+                <input type="radio" class="radio" name="rol" value="Taller" id="taller"/>
+                Taller
+            </label>
+            <label class="form-check-label" for="gerencia">
+                <input type="radio" class="radio" name="rol" value="Gerencia" id="gerencia"/>
+                Gerencia
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+    </form>
+{% endblock %}

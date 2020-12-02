@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Modificar Turno</h3></div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <form action="{% url 'modificar_turno' id=turno.id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="paciente">Paciente</label>
+                                            <input type="text" value="{{ turno.paciente }}" id="paciente" name="paciente" readonly="readonly"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="fecha_turno">Fecha de turno</label>
+                                        <input type="date" id="fecha_turno" name="fecha_turno"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="hora_turno">Hora de turno</label>
+                                        <input type="time" id="hora_turno" name="hora_turno"/>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Guardar Turno</button></div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
