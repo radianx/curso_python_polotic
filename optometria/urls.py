@@ -17,5 +17,6 @@ urlpatterns = [
 
 	#pedidos
 	path('lista_pedidos', views.lista_pedidos, name='lista_pedidos'),
-	path('nuevo_pedido', views.nuevo_pedido, name='nuevo_pedido')
+	path('nuevo_pedido', views.nuevo_pedido, name='nuevo_pedido'),
+	path('ver_pedido/<id>', views.ver_pedido, name='ver_pedido')
 ]

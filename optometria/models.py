@@ -39,7 +39,18 @@ class Producto(models.Model):
         default=DERECHA
     )
 
-    armazon = models.CharField(max_length=200)
+    CON_ARMAZON = 'CA'
+    SIN_ARMAZON = 'SA'
+    ARMAZON_CHOICES = [
+        (CON_ARMAZON, "Si"),
+        (SIN_ARMAZON, "No")
+    ]
+
+    armazon = models.CharField(
+        max_length=2,
+        choices=ARMAZON_CHOICES,
+        default=CON_ARMAZON
+    )
 
     def __str__(self):
         return self.nombre

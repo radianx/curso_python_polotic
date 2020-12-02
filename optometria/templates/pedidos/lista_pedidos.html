@@ -5,33 +5,40 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Monto Total</th>
+                    <th>Vendedor</th>
+                    <th>Paciente</th>
+                    <th>Tipo de Pago</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Monto Total</th>
+                    <th>Vendedor</th>
+                    <th>Paciente</th>
+                    <th>Tipo de Pago</th>
+                    <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
+                {% for pedido in pedidos %}
                 <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td>{{ pedido.fechaDePedido }}</td>
+                    <td>{{ pedido.montoTotal }}</td>
+                    <td>{{ pedido.vendedor }}</td>
+                    <td>{{ pedido.paciente }}</td>
+                    <td>{{ pedido.tipoDePago }}</td>
+                    <td><ul class="list-inline m-0">
+                        <li class="list-inline-item">
+                            <a class="btn btn-success btn-sm rounded-0" href={% url 'ver_pedido' id=pedido.id %} id="ver_turno_{{ pedido.id }}" title="Ver"><i class="fa fa-eye"></i></a>
+                        </li>
+                        </ul>
+                    </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
 {% endblock %}

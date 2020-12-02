@@ -51,13 +51,13 @@
                             {% endif %}
                             <div class="sb-sidenav-menu-heading">Pedidos</div>
                                 {% if request.user.vendedor or request.user.gerente %}
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{% url 'nuevo_pedido' %}">
                               <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
                               Agregar
                             </a>
                             {% endif %}
                             {% if request.user.tecnico or request.user.vendedor or request.user.gerente %}
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{% url 'lista_pedidos' %}">
                               <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                               Ver
                             </a>

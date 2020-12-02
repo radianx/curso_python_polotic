@@ -14,15 +14,23 @@ def index(request):
 	return render(request, "index.html")
 
 def lista_pedidos(request):
-	pedidos = Pedidos.objects.all()
+	pedidos = Pedido.objects.all()
+	return render(request, 'pedidos/lista_pedidos.html', {'pedidos': pedidos})
+
+def ver_pedido(request, id=''):
+	if request.method == "POST":
+		pass
+	
+	pedidos = Pedido.objects.all()
 	return render(request, 'pedidos/lista_pedidos.html', {'pedidos': pedidos})
 
 def nuevo_pedido(request):
 	if request.method == "POST":
 		pass
 	
-	pedidos = Pedidos.objects.all()
-	return render(request, 'pedido/lista_pedidos.html', {'pedidos': pedidos})
+	pacientes = Paciente.objects.all()
+	productos = Producto.objects.all()
+	return render(request, 'pedidos/nuevo_pedido.html', {'pacientes': pacientes, 'productos': productos})
 
 def lista_turno(request):
 	if not request.user.has_related_object('secretaria') or request.user.has_related_object('gerente'):

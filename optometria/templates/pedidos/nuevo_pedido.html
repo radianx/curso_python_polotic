@@ -3,11 +3,10 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-7">
+            <div class="col-lg-8">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Nuevo Pedido</h3></div>
                         <div class="card-body">
-                            <div class="form-row">
                                 <form action="{% url 'nuevo_pedido' %}" method="POST">
                                     {% csrf_token %}
                                     <div class="form-row">
@@ -24,21 +23,81 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="fecha_turno">Fecha de turno</label>
-                                            <input type="date" id="fecha_turno" name="fecha_turno"/>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="hora_turno">Hora de turno</label>
-                                            <input type="time" id="hora_turno" name="hora_turno"/>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="producto">Producto</label>
+                                                <select id="producto" name="producto">
+                                                    {% for producto in productos %}
+                                                        <option value="{{producto.id}}">{{producto.nombre}}</option>
+                                                        <input type="hidden" id=precio_producto_{{producto.id}} value={{producto.precio}}/>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Guardar Turno</button></div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="cantidad">Cantidad</label>
+                                                <input type="number" id="cantidad" name="cantidad"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary" type="button" onclick="addRow()">Agregar</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Subtotal</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Subtotal</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Guardar Pedido</button></div>
                                 </form>
-                            </div>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-
+<script>
+    function addRow(){
+        producto = $("#producto").val
+        cantidad = $("#cantidad").val
+        subtotal = $()
+        tableRow = '<tr><td>'+producto+'</td><td>'+cantidad+'</td><td></td><td><ul class="list-inline m-0"><li class="list-inline-item"><a class="btn btn-danger btn-sm rounded-0"  id="row" title="Eliminar"><i class="fa fa-trash"></i></a></li></ul></td></tr>';
+        $('#dataTable > tbody:last-child').append(tableRow);
+    }
+</script>
 {% endblock %}
+
+<tr>
+    <td><form id="form1"><input type="hidden" name="id" value="1" /></form></td>
+    <td><input form="form1" type="text" name="name" value="Name" /></td>
+    <td><input form="form1" type="text" name="description" value="Description" /></td>
+    <td><input form="form1" type="submit" value="Save" /></td>
+</tr>
+<tr>
+    <td><form id="form2"><input type="hidden" name="id" value="1" /></form></td>
+    <td><input form="form2" type="text" name="name" value="Name" /></td>
+    <td><input form="form2" type="text" name="description" value="Description" /></td>
+    <td><input form="form2" type="submit" value="Save" /></td>
+</tr>
